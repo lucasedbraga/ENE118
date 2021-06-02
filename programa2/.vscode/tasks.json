@@ -16,7 +16,7 @@
         {
             "label": "run",
             "type": "shell",
-            "command":".\\bin\\Programa1.exe",
+            "command":".\\bin\\Programa2.exe",
             "dependsOn":"build"
         }
     ]

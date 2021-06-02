@@ -6,7 +6,7 @@ SRC     := src
 INCLUDE := inc
 
 LIBRARIES   :=
-EXECUTABLE  := Programa1
+EXECUTABLE  := Programa2
 
 
 all: $(BIN)/$(EXECUTABLE)

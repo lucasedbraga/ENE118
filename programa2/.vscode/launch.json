@@ -8,7 +8,7 @@
             "name": "(gdb) Iniciar",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/Programa1.exe",
+            "program": "${workspaceFolder}/bin/Programa2.exe",
             "preLaunchTask":"build",
             "args": [],
             "stopAtEntry": false,
