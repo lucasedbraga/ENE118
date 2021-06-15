@@ -37,6 +37,7 @@ int main()
     cout<<"Dado removido da Fila de Strings "<<outStr<<endl;
     pString.remove(outStr);    
     cout<<"Dado removido da Fila de Strings "<<outStr<<endl;
+ 
 
 
     return 0;

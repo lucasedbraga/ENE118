@@ -2,17 +2,15 @@
 #define FILA_H
 
 template<typename T>
-class Fila
+class Pilha
 {
     private:
         int tam;
         int top;
-        int bottom;
         T *pPtr;
-        T *pSaida;
     public:
-        Fila(int = 10);
-        ~Fila();
+        Pilha(int = 10);
+        ~Pilha();
         bool insere(const T&);
         bool remove(T&);
         bool estaVazia() const;
@@ -22,25 +20,22 @@ class Fila
 
 
 template <typename T>
-Fila<T>::Fila(int t)
+Pilha<T>::Pilha(int t)
 {
     this->tam = t > 0 ? t:10;
     this->top = -1;
-    this->bottom = 0;
     this->pPtr = new T[this->tam];
-    this->pSaida = this->pPtr;
 };
 
 template<typename T>
-Fila<T>::~Fila()
+Pilha<T>::~Pilha()
 {
     delete[] this->pPtr;
-    delete[] this->pSaida;
 };
 
 
 template<typename T>
-bool Fila<T>::insere(const T& valor)
+bool Pilha<T>::insere(const T& valor)
 {
     if(!estaCheia())
     {
@@ -55,11 +50,11 @@ bool Fila<T>::insere(const T& valor)
 
 
 template<typename T>
-bool Fila<T>::remove(T& var)
+bool Pilha<T>::remove(T& var)
 {
     if(!estaVazia())
     {
-        var = pSaida[bottom++]; // Operação de pós incremento em top, após retirar o valor aula4-22min
+        var = pPtr[top--]; // Operação de pós incremento em top, após retirar o valor aula4-22min
         return true;
     }
     else
@@ -69,14 +64,14 @@ bool Fila<T>::remove(T& var)
 };
 
 template<typename T>
-bool Fila<T>::estaVazia() const
+bool Pilha<T>::estaVazia() const
 {
     return top == -1;
 };
 
 
 template<typename T>
-bool Fila<T>::estaCheia() const
+bool Pilha<T>::estaCheia() const
 {
     return top == tam -1;
 };
