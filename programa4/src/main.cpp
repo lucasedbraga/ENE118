@@ -1,6 +1,7 @@
 #include <iostream>
 #include "sensorindustrial.h"
 #include "medicao.h"
+#include "sensorcomajuste.h"
 
 using namespace std;
 
@@ -12,17 +13,20 @@ int main()
 
     SensorIndustrial si("S01V","L/s");
     si.lerDados(meds,numMed);
-    si.imprimeDados();
-    string h = "10:00:04";
-    Medicao m1;
-    if(si.getDado(h,m1))
+    
+
+    SensorComAjuste sa("S02AJ", "L/s");
+    sa.lerDados(meds, numMed);
+    double coefs[] = {0.5,1.2};
+    sa.setCoef(coefs,2);
+
+    SensorIndustrial* sensores[] = {&si,&sa};
+
+    for (int i=0; i<sizeof(sensores)/sizeof(sensores[0]); i++)
     {
-        cout<<"Dado obtido no horario "<<h<<" h -> "<< m1.valor<<" "<<si.getUnidade() << endl;
+        sensores[i]->imprimeDados();
     }
-    else
-    {
-        cout << "Dado nao encontrado" << endl;
-    }
+
 
     return 0;
 } 

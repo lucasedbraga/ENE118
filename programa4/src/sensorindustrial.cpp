@@ -11,7 +11,7 @@ SensorIndustrial::SensorIndustrial(const string& id, const string& un) : id(id),
 SensorIndustrial::~SensorIndustrial()
 {
     this->limpaDados();
-    cout << "Destrutor da classe  SensorIndustrial invocado" <<endl;
+    cout << "Destrutor da classe  SensorIndustrial invocado ID: " << this->getId()<<endl;
 }
 
 void SensorIndustrial::setId(const string&)

@@ -20,8 +20,8 @@ class SensorIndustrial
         //funções set
         void setId(const string&);
         void setUnidade(const string&);
-        void lerDados(const Medicao*, const int&);
-        void limpaDados();
+        virtual void lerDados(const Medicao*, const int&);
+        virtual void limpaDados();
 
         //funções get
         string getId();
@@ -29,7 +29,7 @@ class SensorIndustrial
         int getNumMed();
         int getDados(Medicao*);
         bool getDado(const string&, Medicao&);
-        void imprimeDados();
+        virtual void imprimeDados();
 
 
 };
