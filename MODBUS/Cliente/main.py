@@ -1,4 +1,4 @@
 from cliente import ClienteMODBUS
 
-c = ClienteMODBUS('localhost',502)
+c = ClienteMODBUS('localhost', 9000)
 c.atendimento()

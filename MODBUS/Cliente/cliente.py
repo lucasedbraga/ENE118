@@ -23,7 +23,7 @@ class ClienteMODBUS():
         try:
             atendimento = True
             while atendimento:
-                sel = input('Deseja realizar uma leitura, escrita ou configuração? (1-Leitura, 2-Escrita e 3-Configuração')
+                sel = int(input('Deseja realizar uma leitura, escrita ou configuração? (1-Leitura, 2-Escrita e 3-Configuração'))
 
                 if sel == 1:
                     tipo = input('Qual é o tipo de dado? (1-Holding Register, 2-Coil, 3-Input Register, 4- Entrada Discreta')
@@ -40,7 +40,7 @@ class ClienteMODBUS():
                     self.escreveDado(int(tipo),int(addr),int(valor))
 
                 if sel ==3:
-                    scant = input('Digite o scantime em seguntos')
+                    scant = input('Digite o scantime em segundos')
                     self._scan_time = float(scant)
 
                 if sel ==4:
@@ -55,7 +55,7 @@ class ClienteMODBUS():
         """
         Método para leitura de um dado da Tabela MODBUS
         """
-        if tipo ==1:
+        if tipo == 1:
             return self._cliente.read_holding_registers(addr,1)[0]
 
         if tipo == 2:
