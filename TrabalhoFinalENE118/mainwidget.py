@@ -56,7 +56,7 @@ class MainWidget(MDScreen):
             elif tag['type'] == 'coil':
                 self.ids.act_planta.add_widget(CardCoil(tag,self._modbusClient))
 
-        #self._graph = DataGraphPopup(self._max_points,self._tags['peso_obj']['color'])
+ #       self._graph = DataGraphPopup(self._max_points,self._tags['peso_obj']['color'])
 
 
     def config_button(self, button):
