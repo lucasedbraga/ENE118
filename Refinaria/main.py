@@ -23,7 +23,7 @@ class MainApp(App):
         'oleo_lub': 1006,
         'oleo_comb': 1007,
         'residuos': 1008
-    }, db_path = 'C:\\Users\\lucas\\Lucas\\scripts\\ENE118\\SUPERVISORIO1\\db\\scada.db'
+    }, db_path = 'C:\\Users\\lucas\\Lucas\\scripts\\ENE118\\Refinaria\\db\\scada.db'
         )
         return self._widget
 

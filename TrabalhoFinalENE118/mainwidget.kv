@@ -1,0 +1,240 @@
+#:kivy 1.11.1
+
+<MainWidget>:
+    orientation: 'vertical'
+    MDBoxLayout:
+        orientation: 'vertical'
+        MDToolbar:
+            title: " Software SCADA: Classificador Industrial"
+            right_action_items: [["connection",lambda x: app.root.conect_button(x), "Conectar"]]
+
+
+        MDBottomNavigation:
+            panel_color: app.theme_cls.primary_color
+            text_color_normal: 0,0,0,1
+            text_color_active: 0.8,0.8,0.8,1
+            MDBottomNavigationItem:
+                name: 'Planta'
+                text: 'Planta'
+                icon: 'factory'
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    spacing: 0
+                    width: 300
+                    size_hint: (1,1)
+                    canvas:
+                        Color:
+                            rgb: 0.8,0.8,0.8
+                        Rectangle:
+                            size: self.size
+                    MDBoxLayout:
+                        orientation: 'horizontal'
+                        MDLabel:
+                            text: 'Status da Planta |'
+                            text_color: 0,0,0,1
+                            bold: True
+                            halign: 'left'
+                            valign: 'center'
+                        MDBoxLayout:
+                            orientation: 'horizontal'
+                            MDLabel:
+                                id: info_tensaorede
+                                text: 'Tensão Rede: Desligado '
+                                text_color: 0,0,0,1
+                                bold: True
+                                halign: 'left'
+                                valign: 'center'
+                        MDBoxLayout:
+                            orientation: 'horizontal'
+                            MDLabel:
+                                id: info_velramp
+                                text: 'Vel.Esteira: Desligado  '
+                                text_color: 0,0,0,1
+                                bold: True
+                                halign: 'left'
+                                valign: 'center'
+                        MDBoxLayout:
+                            orientation: 'horizontal'
+                            MDLabel:
+                                text: 'Conexão:  '
+                                text_color: 0,0,0,1
+                                bold: True
+                                halign: 'right'
+                                valign: 'center'
+                            Image:
+                                id: status_con
+                                size_hint_x: None
+                                width: 40
+                                source: 'imgs/desconectado.png'
+                                pos_hint: {'top':1,'right':1}
+
+
+                    MDFloatLayout:
+                        size_hint: (1,20)
+                        orientation:'vertical'
+                        canvas:
+                            Color:
+                                rgb: 1,1,1
+                            Rectangle:
+                                size: self.size
+
+                        Image:
+                            id: img_planta
+                            source: 'imgs/planta_standby.jpg'
+                            pos_hint: {'center_x':0.5, 'center_y':0.5}
+                            size_hint: (1,1)
+
+                        Image:
+                            id: img_peca
+                            source: 'imgs/standby.png'
+                            pos_hint: {'center_x':0.478, 'center_y':0.7}
+                            size_hint: (0.2,0.18)
+
+                        Label:
+                            id: tabela_atual
+                            text: 'Item Atual'
+                            color: 0,0,0,1
+                            font_size: 15
+                            bold: True
+                            halign: 'left'
+                            pos_hint: {'x':0.3,'y':0.4}
+                        Label:
+                            id: info_cor
+                            text: 'Nenhum Objeto'
+                            color: 0,0,0,1
+                            font_size: 15
+                            bold: True
+                            halign: 'left'
+                            pos_hint: {'x':0.3,'y':0.3}
+                        Label:
+                            id: peso_obj
+                            text: '--.-- Kg'
+                            color: 0,0,0,1
+                            font_size: 15
+                            bold: True
+                            halign: 'left'
+                            pos_hint: {'x':0.3,'y':0.2}
+                        Label:
+                            id: tabela_esteira
+                            text: 'Quantidade de Itens'
+                            color: 0,0,0,1
+                            font_size: 15
+                            bold: True
+                            halign: 'left'
+                            pos_hint: {'x':-0.35,'y':0.4}
+                        Label:
+                            id: Esteira1
+                            text: 'Esteira1 : '
+                            color: 0,0,0,1
+                            font_size: 15
+                            bold: True
+                            halign: 'left'
+                            pos_hint: {'x':-0.4,'y':0.30}
+                        Label:
+                            id: numObj_est_1
+                            text: '0'
+                            color: 0,0,0,1
+                            font_size: 15
+                            halign: 'left'
+                            pos_hint: {'x':-0.33,'y':0.298}
+                        Label:
+                            id: Esteira2
+                            text: 'Esteira2 : '
+                            color: 0,0,0,1
+                            font_size: 15
+                            bold: True
+                            halign: 'left'
+                            pos_hint: {'x':-0.4,'y':0.24}
+                        Label:
+                            id: numObj_est_2
+                            text: '0'
+                            color: 0,0,0,1
+                            font_size: 15
+                            halign: 'left'
+                            pos_hint: {'x':-0.33,'y':0.238}
+                        Label:
+                            id: Esteira3
+                            text: 'Esteira3 : '
+                            color: 0,0,0,1
+                            font_size: 15
+                            bold: True
+                            halign: 'left'
+                            pos_hint: {'x':-0.4,'y':0.18}
+                        Label:
+                            id: numObj_est_3
+                            text: '0'
+                            color: 0,0,0,1
+                            font_size: 15
+                            halign: 'left'
+                            pos_hint: {'x':-0.33,'y':0.178}
+                        Label:
+                            id: EsteiraNC
+                            text: 'EsteiraNC : '
+                            color: 0,0,0,1
+                            font_size: 15
+                            bold: True
+                            halign: 'left'
+                            pos_hint: {'x':-0.4,'y':0.12}
+                        Label:
+                            id: numObj_est_nc
+                            text: '0'
+                            color: 0,0,0,1
+                            font_size: 15
+                            halign: 'left'
+                            pos_hint: {'x':-0.33,'y':0.12}
+
+
+            MDBottomNavigationItem:
+                name: 'Atuação na Planta'
+                text: 'Atuação na Planta'
+                icon: 'cog-sync'
+                ScrollView:
+                    size_hint: (1,None)
+                    size: Window.width, Window.height
+                    bar_pos_y: 'right'
+                    bard_width: 50
+                    effect_cls: 'ScrollEffect'
+                    MDStackLayout:
+                        id: act_planta
+                        size_hint: (1,None)
+                        padding: 0.11*Window.width, "130dp"
+                        spacing: 0.02*Window.width
+                        adaptive_height: True
+
+
+            MDBottomNavigationItem:
+                name: 'Dados em Tempo Real'
+                text: 'Dados em Tempo Real'
+                icon: 'clock'
+                ScrollView:
+                    size_hint: (1,None)
+                    size: Window.width, Window.height
+                    bar_pos_y: 'right'
+                    bard_width: 50
+                    effect_cls: 'ScrollEffect'
+                    MDStackLayout:
+                        id: modbus_data
+                        size_hint: (1,None)
+                        padding: 0.11*Window.width, "130dp"
+                        spacing: 0.02*Window.width
+                        adaptive_height: True
+
+            MDBottomNavigationItem:
+                name: 'Dados Históricos'
+                text: 'Histórico'
+                icon: 'database'
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    padding: '20dp'
+                    spacing: '50dp'
+
+
+
+
+
+
+
+
+
+
+
