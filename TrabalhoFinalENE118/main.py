@@ -18,7 +18,7 @@ class MainApp(MDApp):
         self.theme_cls.accent_pallete = "Gray"
         self.modbus_addrs = [
         {'name': 'estado_atuador', 'description': 'Atuador mecânico que posiciona objetos na esteira (1 - ativo | 0 - inativo)', 'address': 801, 'type': 'coil','mult':1},
-        {'name': 'bt_Desliga/Liga', 'description': 'Botão NF Liga/Desliga do processo: (1 - Desliga | 0 - Liga)', 'address': 802, 'type': 'coil','mult':1},
+        {'name': 'bt_Desliga_Liga', 'description': 'Botão NF Liga/Desliga do processo: (1 - Desliga | 0 - Liga)', 'address': 802, 'type': 'coil','mult':1},
         {'name': 't_part', 'description': 'Tempo de partida do motor', 'address': 798, 'type': 'holding','mult':10},
         {'name': 'freq_des', 'description':'Frequência de operação desejada para o motor (prop. à rotação)', 'address': 799, 'type': 'holding','mult':1},
         {'name': 'freq_mot', 'description':'Frequência do motor medida', 'address': 800, 'type': 'input','mult':10},

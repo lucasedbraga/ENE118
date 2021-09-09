@@ -40,9 +40,8 @@ class MainWidget(MDScreen):
         self._meas['timestamp'] = None
         self._meas['values'] = {}
         self._session = Session()
-        #Base.metadata.create_all(engine)
+        Base.metadata.create_all(engine)
         self._lock = Lock()
-        self.guardar_dados = Thread(target=self.guardar_dados)
         for tag in self._tags:
             plot_color = (random.random(),random.random(),random.random(),1)
             tag['color'] = plot_color
@@ -59,9 +58,6 @@ class MainWidget(MDScreen):
  #       self._graph = DataGraphPopup(self._max_points,self._tags['peso_obj']['color'])
 
 
-    def config_button(self, button):
-        self._configPopup.open()
-        Snackbar(text='Teste1').open()
 
     def conect_button(self, button):
         self._modbusPopup.open()
@@ -83,8 +79,10 @@ class MainWidget(MDScreen):
         try:
             self._modbusClient.open()
             if self._modbusClient.is_open():
+                self._guardar_dados = Thread(target=self.guardar_dados)
                 self._updateThread = Thread(target=self.updater)
                 self._updateThread.start()
+                self._guardar_dados.start()
 
                 Snackbar(text='[color=#000000] Conexão Realizada [/color]', bg_color=(0,1,0,1)).open()
                 self.ids.status_con.source = 'imgs/conectado.png'
@@ -146,7 +144,7 @@ class MainWidget(MDScreen):
         """
         # Atualização dos Labels
 
-        if self._meas['values']['bt_Desliga/Liga'] == True:
+        if self._meas['values']['bt_Desliga_Liga'] == True:
             Clock.schedule_once(partial(self.updateBackground, 'imgs/planta_off.png'))
             Clock.schedule_once(partial(self.updateImage, 'imgs/standby.png'))
         else:
@@ -233,18 +231,19 @@ class MainWidget(MDScreen):
         """
         try:
             print("Persistencia iniciada")
-            self._cliente_modbus.open()
+            self._modbusClient.is_open()
             data = {}
             while True:
                 data['timestamp'] = datetime.now()
-                for tag in self._tags_addrs:
-                    data[tag['name']] = self._cliente_modbus.read_holding_registers(tag['address'],1)[0]
+                for tag in self._tags:
+                    data[tag['name']] = self._meas['values'][tag['name']]
                 dado = DadosCLP(**data)
                 self._lock.acquire()
                 self._session.add(dado)
                 self._session.commit()
                 self._lock.release()
-                sleep(self._scan_time)
+                sleep(self._velramp/1000)
+
 
         except Exception as e:
             print("Erro na persistencia de dados: ", e.args)
@@ -264,7 +263,7 @@ class MainWidget(MDScreen):
                 result = self._session.query(DadosCLP.timestamp.between(init,final)).all()
                 result_fmt_list = [obj.get_attr_printable_list() for obj in result]
                 self._lock.release()
-
+                sleep(self._velramp/1000)
                 print(tabulate(result_fmt_list,headers=DadosCLP.__table__.columns.keys()))
 
         except Exception as e:
