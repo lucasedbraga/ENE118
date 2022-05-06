@@ -1,0 +1,24 @@
+#:kivy 1.11.1
+<MyWidget>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        MDToolbar:
+            title: "Informatica Industrial"
+        MDBottomNavigation:
+            panel_color: app.theme_cls.accent_color
+            text_color_normal: 0.4,0.4,0.4,1
+            text_color_active: 0.8,0.8,0.8,1
+            MDBottomNavigationItem:
+                name:"config"
+                text: "CONFIGURAÇÕES"
+                icon: 'cog'
+              
+            MDBottomNavigationItem:
+                name:"data"
+                text: "DADOS"
+                icon: 'chart-donut'
+                ScrollView:
+                    size_hint: (1,None)
+
+
+
